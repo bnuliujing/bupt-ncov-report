@@ -1,5 +1,7 @@
 # BUPT 疫情防控通 自动上报脚本
 
+- Now it works on BNU... just use your [one.bnu.eud.cn](one.bnu.edu.cn) username and password and follow the description below.
+
 [![单元&功能测试     ](https://github.com/ipid/bupt-ncov-report/workflows/%E5%8D%95%E5%85%83&%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95%20%20%20%20%20/badge.svg)](https://github.com/ipid/bupt-ncov-report/actions) [![Coverage 状态](https://coveralls.io/repos/github/ipid/bupt-ncov-report/badge.svg?branch=master)](https://coveralls.io/github/ipid/bupt-ncov-report?branch=master)
 
 该脚本可以帮助您操作北邮「疫情防控通」，自动完成每日上报。
@@ -103,8 +105,8 @@ GCP 支持通过 `requirements.txt` 自动下载依赖项，因此将所有文�
 
 | 环境变量      | 命令行参数      | 说明                                                         |
 | :------------ | --------------- | :----------------------------------------------------------- |
-| BUPT_SSO_USER | --bupt-sso-user | 您登录[北邮门户（https://my.bupt.edu.cn/）](https://my.bupt.edu.cn/)时使用的用户名，通常是您的学工号 |
-| BUPT_SSO_PASS | --bupt-sso-pass | 您登录[北邮门户（https://my.bupt.edu.cn/）](https://my.bupt.edu.cn/)时使用的密码 |
+| BUPT_SSO_USER | --bupt-sso-user | 您登录[北师大门户（https://one.bnu.edu.cn/）](https://one.bnu.edu.cn/)时使用的用户名，通常是您的学工号 |
+| BUPT_SSO_PASS | --bupt-sso-pass | 您登录[北邮门户（https://one.bnu.edu.cn/）](https://one.bnu.edu.cn/)时使用的密码 |
 | TG_BOT_TOKEN  | --tg-bot-token  | （可选）如果您需要把执行结果通过 Telegram 机器人告知，请将此变量设为您的 Telegram 机器人的 API Token |
 | TG_CHAT_ID    | --tg-chat-id    | （可选）如果您需要把执行结果通过 Telegram 机器人告知，请将此变量设为您自己的用户 id |
 | BNR_LOG_PATH  | --bnr-log-path  | （可选）日志文件存放的路径，未设置则不输出日志文件。（注意日志中可能有敏感信息） |

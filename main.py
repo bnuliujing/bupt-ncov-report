@@ -14,13 +14,13 @@ import requests
 # 如果您无法设置环境变量、命令行参数，可以在此处指定默认值；详情参考文档。
 CONFIG_SCHEMA = {
     'BUPT_SSO_USER': {
-        'description': '您登录北邮门户（https://my.bupt.edu.cn/）时使用的用户名，通常是您的学工号',
-        'for_short': '北邮账号',
+        'description': '您登录北师大门户（https://one.bnu.edu.cn/）时使用的用户名，通常是您的学工号',
+        'for_short': '北师大账号',
         'default': None,
     },
     'BUPT_SSO_PASS': {
-        'description': '您登录北邮门户（https://my.bupt.edu.cn/）时使用的密码',
-        'for_short': '北邮密码',
+        'description': '您登录北师大门户（https://one.bnu.edu.cn/）时使用的密码',
+        'for_short': '北师大密码',
         'default': None,
     },
     'TG_BOT_TOKEN': {
@@ -42,12 +42,16 @@ CONFIG_SCHEMA = {
     },
 }
 SCRIPT_DOC = {
-    'description': '自动填写北邮”疫情防控通“的每日上报信息。',
+    'description': '自动填写北师大”疫情防控通“的每日上报信息。',
 }
 
-LOGIN_API = 'https://app.bupt.edu.cn/uc/wap/login/check'
-REPORT_PAGE = 'https://app.bupt.edu.cn/ncov/wap/default/index'
-REPORT_API = 'https://app.bupt.edu.cn/ncov/wap/default/save'
+# LOGIN_API = 'https://app.bupt.edu.cn/uc/wap/login/check'
+# REPORT_PAGE = 'https://app.bupt.edu.cn/ncov/wap/default/index'
+# REPORT_API = 'https://app.bupt.edu.cn/ncov/wap/default/save'
+
+LOGIN_API = 'https://onewechat.bnu.edu.cn/uc/wap/login/check'
+REPORT_PAGE = 'https://onewechat.bnu.edu.cn/ncov/wap/default/index'
+REPORT_API = 'https://onewechat.bnu.edu.cn/ncov/wap/default/save'
 
 # 不能再短了，再短肯定是出 bug 了
 REASONABLE_LENGTH = 24
@@ -159,7 +163,7 @@ def check_config(config: Dict[str, Optional[str]]) -> None:
     # 检查 BUPT SSO 用户名、密码
     for key in ('BUPT_SSO_USER', 'BUPT_SSO_PASS'):
         if config[key] is None:
-            raise ValueError(f'配置 {key} 未设置。缺少此配置，该脚本无法自动登录北邮网站。')
+            raise ValueError(f'配置 {key} 未设置。缺少此配置，该脚本无法自动登录北师大网站。')
 
     # 检查 Telegram 的环境变量是否已经设置
     if (config['TG_BOT_TOKEN'] is None) != (config['TG_CHAT_ID'] is None):
@@ -228,8 +232,8 @@ def do_ncov_report(config: Dict[str, Optional[str]]) -> str:
     进行信息上报的工作函数，包含本脚本主要逻辑。
     :return: 上报 API 的返回内容。
     """
-    # 登录北邮 nCoV 上报网站
-    logger.info('登录北邮 nCoV 上报网站')
+    # 登录北师大 nCoV 上报网站
+    logger.info('登录北师大 nCoV 上报网站')
     login_res = session.post(LOGIN_API, data={
         'username': g_config['BUPT_SSO_USER'],
         'password': g_config['BUPT_SSO_PASS'],
